@@ -1,0 +1,11 @@
+#!/bin/bash
+
+BACKUP_DAILY="/media/usb/backup/ubuntu/daily/"
+BACKUP_WEEKLY="/media/usb/backup/ubuntu/weekly"
+LOG_FILE=/media/usb/backup/ubuntu/logs/$(date +%Y-%m-%d)-weekly.log
+
+echo $(date) 'start' >> $LOG_FILE
+
+rsync -aAXv --delete $BACKUP_DAILY $BACKUP_WEEKLY >> $LOG_FILE
+
+echo $(date) 'end' >> $LOG_FILE

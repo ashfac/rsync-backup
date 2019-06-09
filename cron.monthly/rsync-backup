@@ -1,0 +1,11 @@
+#!/bin/bash
+
+BACKUP_DAILY="/media/usb/backup/ubuntu/daily"
+BACKUP_MONTHLY="/media/usb/backup/ubuntu/monthly"
+LOG_FILE=/media/usb/backup/ubuntu/logs/$(date +%Y-%m-%d)-monthly.log
+
+echo $(date) 'start' >> $LOG_FILE
+
+tar Oc -C $BACKUP_DAILY . | pxz - > $BACKUP_MONTHLY/$(date +%Y-%m-%d).tar.xz
+
+echo $(date) 'end' >> $LOG_FILE
