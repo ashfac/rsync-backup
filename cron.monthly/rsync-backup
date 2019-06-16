@@ -1,8 +1,8 @@
 #!/bin/bash
 
-BACKUP_DAILY="/media/usb/backup/ubuntu/daily"
-BACKUP_MONTHLY="/media/usb/backup/ubuntu/monthly"
-LOG_FILE=/media/usb/backup/ubuntu/logs/$(date +%Y-%m-%d)-monthly.log
+BACKUP_DAILY="/media/data/backup/system/daily"
+BACKUP_MONTHLY="/media/data/backup/system/monthly"
+LOG_FILE=/media/data/backup/system/logs/$(date +%Y-%m-%d)-monthly.log
 
 echo $(date) 'start' >> $LOG_FILE
 
