@@ -1,11 +1,18 @@
 #!/bin/bash
 
-BACKUP_DAILY="/media/data/backup/system/daily"
-BACKUP_MONTHLY="/media/data/backup/system/monthly"
-LOG_FILE=/media/data/backup/system/logs/$(date +%Y-%m-%d)-monthly.log
+SYSTEM_DAILY="/media/usb/backup/system/daily"
+SYSTEM_MONTHLY="/media/usb/backup/system/monthly"
+SYSTEM_LOG=/media/usb/backup/system/logs/$(date +%Y-%m-%d)-monthly.log
 
-echo $(date) 'start' >> $LOG_FILE
+ENGINEERING_DAILY="/media/usb/backup/engineering/daily"
+ENGINEERING_MONTHLY="/media/usb/backup/engineering/monthly"
+ENGINEERING_LOG=/media/usb/backup/engineering/logs/$(date +%Y-%m-%d)-monthly.log
 
-tar Oc -C $BACKUP_DAILY . | pxz - > $BACKUP_MONTHLY/$(date +%Y-%m-%d).tar.xz
+echo $(date) 'start' >> $SYSTEM_LOG
+tar Oc -C $SYSTEM_DAILY . | pxz - > $SYSTEM_MONTHLY/$(date +%Y-%m-%d).tar.xz
+echo $(date) 'end' >> $SYSTEM_LOG
 
-echo $(date) 'end' >> $LOG_FILE
+echo $(date) 'start' >> $ENGINEERING_LOG
+tar Oc -C $ENGINEERING_DAILY . | pxz - > $ENGINEERING_MONTHLY/$(date +%Y-%m-%d).tar.xz
+echo $(date) 'end' >> $ENGINEERING_LOG
+

@@ -1,11 +1,18 @@
 #!/bin/bash
 
-BACKUP_DAILY="/media/data/backup/system/daily/"
-BACKUP_WEEKLY="/media/data/backup/system/weekly"
-LOG_FILE=/media/data/backup/system/logs/$(date +%Y-%m-%d)-weekly.log
+SYSTEM_DAILY="/media/usb/backup/system/daily/"
+SYSTEM_WEEKLY="/media/usb/backup/system/weekly"
+SYSTEM_LOG=/media/usb/backup/system/logs/$(date +%Y-%m-%d)-weekly.log
 
-echo $(date) 'start' >> $LOG_FILE
+ENGINEERING_DAILY="/media/usb/backup/engineering/daily/"
+ENGINEERING_WEEKLY="/media/usb/backup/engineering/weekly"
+ENGINEERING_LOG=/media/usb/backup/engineering/logs/$(date +%Y-%m-%d)-weekly.log
 
-rsync -aAXv --delete $BACKUP_DAILY $BACKUP_WEEKLY >> $LOG_FILE
+echo $(date) 'start' >> $SYSTEM_LOG
+rsync -aAXv --delete $SYSTEM_DAILY $SYSTEM_WEEKLY >> $SYSTEM_LOG
+echo $(date) 'end' >> $SYSTEM_LOG
 
-echo $(date) 'end' >> $LOG_FILE
+echo $(date) 'start' >> $ENGINEERING_LOG
+rsync -aAXv --delete $ENGINEERING_DAILY $ENGINEERING_WEEKLY >> $ENGINEERING_LOG
+echo $(date) 'end' >> $ENGINEERING_LOG
+
