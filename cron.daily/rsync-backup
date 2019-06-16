@@ -13,9 +13,9 @@ for day in ${DAYS_TO_LOG[@]}; do
 
         rsync -avAX --delete --exclude={"/var/cache/apt/archives/*","/var/lib/lxcfs/*","/var/log/*","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} / $BACKUP_DAILY >> $LOG_FILE
 
-        rsync -avAX --delete /media/boot $BACKUP_DAILY/media/boot >> $LOG_FILE
+        rsync -avAX --delete /media/boot $BACKUP_DAILY/media >> $LOG_FILE
 
-        rsync -avAX --delete /media/data/engineering $BACKUP_DAILY/media/data/engineering >> $LOG_FILE
+        rsync -avAX --delete /media/data/engineering $BACKUP_DAILY/media/data >> $LOG_FILE
 
         echo $(date) 'end' >> $LOG_FILE
     fi
