@@ -11,7 +11,7 @@ ENGINEERING_DAILY="/media/usb/backup/engineering/daily"
 SYSTEM_LOG=/media/usb/backup/system/logs/$(date +%Y-%m-%d)-daily.log
 ENGINEERING_LOG=/media/usb/backup/engineering/logs/$(date +%Y-%m-%d)-daily.log
 
-DAYS_TO_LOG=("Sat" "Sun" "Mon")
+DAYS_TO_LOG=("Sat" "Sun" "Mon" "Tue" "Wed" "Thu" "Fri" )
 
 DATE=$(date)
 
@@ -19,7 +19,7 @@ for day in ${DAYS_TO_LOG[@]}; do
     if [[ $DATE == *$day* ]]; then
         echo $(date) 'start' >> $SYSTEM_LOG
 
-        rsync -avAX --delete --exclude={"/var/cache/apt/archives/*","/var/lib/lxcfs/*","/var/log/*","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} $SYSTEM_ROOT $SYSTEM_ROOT_DAILY >> $SYSTEM_LOG
+        rsync -avAX --delete --exclude={"/var/cache/apt/archives/*","/var/lib/lxcfs/*","/var/log/*","/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found","/swapfile"} $SYSTEM_ROOT $SYSTEM_ROOT_DAILY >> $SYSTEM_LOG
 
         rsync -avAX --delete $SYSTEM_BOOT $SYSTEM_BOOT_DAILY >> $SYSTEM_LOG
 
